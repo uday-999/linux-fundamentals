@@ -1,23 +1,32 @@
 # Day 01 - Linux Fundamentals 🐧
 
+## 📌 Day 01 Summary
+Today I learned what Linux is, why it is popular, how it compares with Windows, and practiced basic Linux commands.
+
+---
+
 ## ✅ What is Linux?
-Linux is an **open-source operating system** used in **servers, cloud, DevOps, and development**.
+Linux is an **open-source operating system** used in:
+- Servers & Cloud (AWS, Azure, GCP)
+- DevOps & CI/CD pipelines
+- Cybersecurity tools
+- Android (based on Linux kernel)
 
 ---
 
-## ✅ Why Linux is popular?
-- 💸 Free and Open Source  
-- ⚡ Fast and lightweight  
-- 🔒 Secure and stable  
-- ☁️ Used in servers and cloud  
-- 🧑‍💻 Great for developers and system admins  
+## ⭐ Why Linux is Popular?
+- 🆓 **Free and Open Source**
+- ⚡ **Fast and lightweight**
+- 🔒 **Secure and stable**
+- ☁️ **Used in servers and cloud**
+- 👨‍💻 **Great for developers and system admins**
 
 ---
 
-## ✅ Linux vs Windows (Basic Comparison)
+## 🆚 Linux vs Windows (Basic Comparison)
 
 | Feature | Linux | Windows |
-|--------|-------|---------|
+|--------|------|---------|
 | Cost | Free | Paid |
 | Performance | Lightweight | Heavy |
 | Security | Strong permissions | More malware target |
@@ -26,10 +35,14 @@ Linux is an **open-source operating system** used in **servers, cloud, DevOps, a
 
 ---
 
-## ✅ Basic Linux Commands (Starter)
+## 💻 Basic Linux Commands (Starter)
+
 ```bash
-pwd        # show current folder
-ls         # list files and folders
-cd ..      # go back one folder
-mkdir test # create a folder
-touch a.txt # create a file
+pwd                 # Show current directory
+ls                  # List files and folders
+ls -la              # List all files (including hidden) with details
+cd folder_name      # Go inside folder
+cd ..               # Go back one folder
+mkdir test          # Create a folder
+touch a.txt         # Create a file
+clear               # Clear terminal screen
