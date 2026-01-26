@@ -155,10 +155,15 @@ getent group webadmins
 ## 📚 Summary & Key Takeaways
 
 ✅ Checked user identity using `whoami` and `id`
+
 ✅ Explored system files `/etc/passwd` and `/etc/group`
+
 ✅ Created and managed users using `useradd`, `passwd`, `userdel`
+
 ✅ Created and managed groups using `groupadd`, `groupdel`
+
 ✅ Assigned group membership using `usermod -aG`
+
 ✅ Verified configurations using `groups`, `id`, and `getent`
 
 ---
