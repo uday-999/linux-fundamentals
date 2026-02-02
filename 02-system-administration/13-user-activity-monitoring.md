@@ -1,0 +1,209 @@
+# 🐧 Day 13: Linux User Activity Monitoring & Basic Forensics
+
+## 📌 Overview
+
+Today’s focus was on **user activity monitoring and basic forensic investigation techniques** in Linux systems.
+
+Managing users is only part of system administration.
+Monitoring and auditing user behavior is what ensures **security, accountability, and compliance**.
+
+In production environments, logs are evidence.
+
+---
+
+## 🎯 Why This Matters
+
+Effective monitoring allows you to:
+
+* Identify unauthorized access attempts
+* Investigate suspicious activity
+* Audit privileged (sudo) commands
+* Detect brute-force login attacks
+* Support compliance requirements (SOC 2, ISO 27001, PCI-DSS)
+* Troubleshoot incidents with historical visibility
+
+> Security is not just prevention. It is visibility.
+
+---
+
+# 🔎 Core Commands Explored
+
+## 1️⃣ Live Session Monitoring
+
+```bash
+who
+```
+
+Shows currently logged-in users.
+
+```bash
+w
+```
+
+Displays active users and what they are currently doing.
+
+```bash
+w <username>
+```
+
+Inspect real-time activity for a specific user.
+
+---
+
+## 2️⃣ Login History Investigation
+
+```bash
+last
+```
+
+Shows historical login records (from `/var/log/wtmp`).
+
+```bash
+last -10
+```
+
+Displays the last 10 login sessions.
+
+```bash
+lastlog
+```
+
+Displays last login time for all system users.
+
+---
+
+## 3️⃣ Process Investigation
+
+```bash
+ps -u <username>
+```
+
+Lists processes owned by a specific user.
+
+```bash
+ps aux --sort=-%cpu | head -10
+```
+
+Identifies high CPU-consuming processes.
+
+---
+
+## 4️⃣ Log Analysis with journalctl
+
+```bash
+sudo journalctl
+```
+
+View full systemd journal logs.
+
+```bash
+sudo journalctl _COMM=sudo --since "today"
+```
+
+View all sudo commands executed today.
+
+```bash
+sudo journalctl _UID=$(id -u <username>) --since "1 hour ago"
+```
+
+Investigate user activity within a specific timeframe.
+
+---
+
+## 5️⃣ Failed Login & Authentication Checks
+
+### Debian / Ubuntu Systems
+
+```bash
+sudo grep "Failed password" /var/log/auth.log
+```
+
+### RHEL / CentOS / Amazon Linux
+
+```bash
+sudo grep "Failed password" /var/log/secure
+```
+
+### Alternative Authentication Failure Pattern
+
+```bash
+sudo grep "authentication failure" /var/log/auth.log | head -20
+```
+
+---
+
+# 🧪 Mini Lab: Incident Investigation Scenario
+
+### Scenario:
+
+You suspect unauthorized access to a production server.
+
+### Step 1: Check Recent Logins
+
+```bash
+last
+```
+
+### Step 2: Check for Failed Login Attempts
+
+```bash
+sudo grep "Failed password" /var/log/auth.log
+```
+
+### Step 3: Review Sudo Usage
+
+```bash
+sudo journalctl _COMM=sudo --since "today"
+```
+
+### Step 4: Inspect Active Processes
+
+```bash
+ps aux | grep -E "(crypt|miner|nc|wget|curl)"
+```
+
+### Step 5: Investigate Specific User Activity
+
+```bash
+sudo journalctl _UID=$(id -u suspicious_user) --since "2 hours ago"
+```
+
+---
+
+# 🛡 Enterprise-Level Insight
+
+Monitoring is not optional in real infrastructure.
+
+A SysAdmin must understand:
+
+* Log file locations differ by distribution
+* Sudo activity must be auditable
+* Failed login attempts indicate brute-force attacks
+* Abnormal processes may indicate compromise
+* Journald is centralized log authority on modern systems
+
+Without logs, incident response is guesswork.
+
+With logs, incident response is evidence-based.
+
+---
+
+# 📚 Key Takeaways
+
+* `who` and `w` show live visibility
+* `last` and `lastlog` show historical activity
+* `journalctl` enables structured log analysis
+* Authentication logs expose attack attempts
+* Process inspection helps detect compromise
+
+> A system administrator without logs operates blindly.
+> One who masters logs becomes a guardian of the infrastructure.
+
+---
+
+## 🚀 Next
+
+**Day 14 – Package Management & System Updates**
+(yum, dnf, rpm, apt, repository management, update strategies)
+
+---
