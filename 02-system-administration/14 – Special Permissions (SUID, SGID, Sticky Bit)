@@ -1,0 +1,333 @@
+# 🐧 Day 14 – Package Management in Amazon Linux
+
+> Installing, updating, securing, and troubleshooting software packages in production Linux systems.
+
+![Amazon Linux](https://img.shields.io/badge/Amazon%20Linux-2%20%7C%202023-FF9900?logo=amazonlinux)
+![Package Management](https://img.shields.io/badge/Topic-Package%20Management-blue)
+![Level](https://img.shields.io/badge/Level-SysAdmin-green)
+
+---
+
+## 📌 Overview
+
+Package management is a core responsibility of a Linux System Administrator.
+
+In **Amazon Linux**, we use:
+
+* **RPM** → Low-level package manager
+* **YUM** → Amazon Linux 2
+* **DNF** → Amazon Linux 2023
+
+---
+
+## 📦 1️⃣ Package Management Architecture
+
+```text
+Application
+   ↓
+YUM / DNF  (Dependency Resolution)
+   ↓
+RPM        (Package Database + Installation)
+   ↓
+Repositories
+   ↓
+GPG Keys (Signature Verification)
+```
+
+---
+
+# 📂 2️⃣ RPM – The Low-Level Tool
+
+RPM works directly with `.rpm` files and maintains the local package database.
+
+<details>
+<summary>🔍 Common RPM Commands</summary>
+
+### List all installed packages
+
+```bash
+rpm -qa
+```
+
+### Check if package is installed
+
+```bash
+rpm -q nginx
+```
+
+### Get package details
+
+```bash
+rpm -qi nginx
+```
+
+### Verify package integrity
+
+```bash
+rpm -V nginx
+```
+
+### Install local RPM file
+
+```bash
+sudo rpm -ivh package.rpm
+```
+
+⚠️ RPM does NOT resolve dependencies automatically.
+
+</details>
+
+---
+
+# 📦 3️⃣ YUM (Amazon Linux 2)
+
+YUM resolves dependencies and pulls packages from repositories.
+
+<details>
+<summary>📋 YUM Commands</summary>
+
+### Search for package
+
+```bash
+sudo yum search nginx
+```
+
+### Install package
+
+```bash
+sudo yum install nginx -y
+```
+
+### Remove package
+
+```bash
+sudo yum remove nginx -y
+```
+
+### Update specific package
+
+```bash
+sudo yum update nginx
+```
+
+### Update entire system
+
+```bash
+sudo yum update
+```
+
+</details>
+
+---
+
+# 📦 4️⃣ DNF (Amazon Linux 2023)
+
+DNF replaces YUM in Amazon Linux 2023.
+
+Commands are nearly identical:
+
+```bash
+sudo dnf search nginx
+sudo dnf install nginx
+sudo dnf remove nginx
+sudo dnf update
+```
+
+---
+
+# 🔐 5️⃣ Security Updates Only (Production Best Practice)
+
+Instead of blindly updating everything:
+
+### List security updates
+
+```bash
+sudo yum updateinfo list security
+```
+
+### Apply only security patches
+
+```bash
+sudo yum update --security
+```
+
+✔️ Critical in production environments.
+
+---
+
+# 🗂 6️⃣ Repository Management
+
+Repositories define where packages are downloaded from.
+
+### List enabled repositories
+
+```bash
+sudo yum repolist
+```
+
+### List all repositories
+
+```bash
+sudo yum repolist all
+```
+
+### Repository configuration directory
+
+```bash
+/etc/yum.repos.d/
+```
+
+Each `.repo` file typically contains:
+
+* `baseurl`
+* `gpgcheck`
+* `enabled`
+* `name`
+
+---
+
+# 📜 7️⃣ YUM History – Rollback Safety
+
+Very important for real-world troubleshooting.
+
+### View transaction history
+
+```bash
+sudo yum history
+```
+
+### Get transaction details
+
+```bash
+sudo yum history info 5
+```
+
+### Undo a transaction
+
+```bash
+sudo yum history undo 5
+```
+
+✔️ Useful for recovering from broken updates.
+
+---
+
+# 🔒 8️⃣ Version Locking (Prevent Unexpected Upgrades)
+
+### Install plugin
+
+```bash
+sudo yum install yum-plugin-versionlock
+```
+
+### Lock a package
+
+```bash
+sudo yum versionlock add nginx
+```
+
+### List locks
+
+```bash
+sudo yum versionlock list
+```
+
+### Remove lock
+
+```bash
+sudo yum versionlock delete nginx
+```
+
+✔️ Important when application compatibility matters.
+
+---
+
+# 🧹 9️⃣ Cleaning Cache
+
+### Clear cache
+
+```bash
+sudo yum clean all
+```
+
+### Rebuild cache
+
+```bash
+sudo yum makecache
+```
+
+---
+
+# 🚨 1️⃣0️⃣ Troubleshooting
+
+### Check dependency issues
+
+```bash
+sudo yum check
+```
+
+### Complete unfinished transactions
+
+```bash
+sudo yum-complete-transaction
+```
+
+### Rebuild RPM database (if corrupted)
+
+```bash
+sudo rpm --rebuilddb
+```
+
+---
+
+# 🧪 Hands-On Lab
+
+## 🧩 Exercise 1 – Install & Validate
+
+```bash
+sudo yum install httpd -y
+rpm -q httpd
+systemctl status httpd
+```
+
+## 📜 Exercise 2 – View History
+
+```bash
+sudo yum history
+sudo yum history info last
+```
+
+## 🔐 Exercise 3 – Security Patch Review
+
+```bash
+sudo yum updateinfo summary
+```
+
+## 🗑 Exercise 4 – Remove Package
+
+```bash
+sudo yum remove httpd -y
+```
+
+---
+
+# 📌 Key Concepts Learned
+
+* ✅ RPM vs YUM vs DNF
+* ✅ Repository structure
+* ✅ Security-only updates
+* ✅ Transaction rollback
+* ✅ Version locking
+* ✅ Troubleshooting dependency issues
+
+---
+
+# 🚀 Next: Day 15 – Systemd Deep Dive
+
+* `systemctl`
+* Services & targets
+* Boot process
+* Enable vs start
+* Service troubleshooting
+
+---
