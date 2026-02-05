@@ -1,0 +1,236 @@
+# 🐧 Day 16 – Package Management (YUM, DNF & RPM)
+## Managing Software the SysAdmin Way
+
+> Software management is not just installation — it is stability, security, and lifecycle control.
+
+Package management is a **core System Administration skill**, especially on RHEL-based systems like Amazon Linux, CentOS, and Rocky Linux.
+
+---
+
+## 🎯 Why Package Management Matters
+
+In production environments:
+
+- Security updates must be applied safely
+- Dependencies must resolve correctly
+- Versions must remain consistent
+- Broken upgrades must be recoverable
+- Software must be verifiable and auditable
+
+A professional SysAdmin never installs software manually from random sources — they use package managers.
+
+---
+
+# 📦 1️⃣ Understanding the Tools
+
+| Tool | Purpose |
+|------|--------|
+| `yum` | High-level package manager (Amazon Linux 2) |
+| `dnf` | Modern replacement for yum (RHEL 8+) |
+| `rpm` | Low-level package tool |
+| `repo` | Software repository configuration |
+
+---
+
+# 📥 2️⃣ Installing Packages
+
+### Install a Package
+```bash
+sudo yum install nginx
+````
+
+### Install Without Prompt
+
+```bash
+sudo yum install -y git
+```
+
+### Install Specific Version
+
+```bash
+sudo yum install nginx-1.20.1
+```
+
+---
+
+# 🔄 3️⃣ Updating Packages
+
+### Update Single Package
+
+```bash
+sudo yum update nginx
+```
+
+### Update Entire System
+
+```bash
+sudo yum update
+```
+
+### Check Available Updates
+
+```bash
+yum check-update
+```
+
+---
+
+# ❌ 4️⃣ Removing Packages
+
+### Remove Package
+
+```bash
+sudo yum remove nginx
+```
+
+### Remove with Dependencies
+
+```bash
+sudo yum autoremove
+```
+
+---
+
+# 🔍 5️⃣ Querying Packages with RPM
+
+### Check Package Information
+
+```bash
+rpm -qi nginx
+```
+
+### List Installed Files
+
+```bash
+rpm -ql nginx
+```
+
+### Check Package Version
+
+```bash
+rpm -q nginx
+```
+
+### Verify Package Integrity
+
+```bash
+rpm -V nginx
+```
+
+### Find Which Package Owns a File
+
+```bash
+rpm -qf /usr/sbin/nginx
+```
+
+---
+
+# 🌐 6️⃣ Repository Management
+
+### List Enabled Repositories
+
+```bash
+yum repolist
+```
+
+### Show Repository Details
+
+```bash
+yum repoinfo
+```
+
+### Enable / Disable Repository
+
+```bash
+sudo yum-config-manager --enable repo-name
+sudo yum-config-manager --disable repo-name
+```
+
+---
+
+# 🧹 7️⃣ Cache Management
+
+### Clean All Cached Data
+
+```bash
+sudo yum clean all
+```
+
+### Rebuild Metadata Cache
+
+```bash
+sudo yum makecache
+```
+
+---
+
+# 🧪 8️⃣ Practical Lab
+
+## Scenario: Install and Manage Nginx
+
+```bash
+# 1. Install nginx
+sudo yum install -y nginx
+
+# 2. Verify installation
+rpm -qi nginx
+
+# 3. Check installed files
+rpm -ql nginx
+
+# 4. Start service
+sudo systemctl start nginx
+
+# 5. Check service status
+sudo systemctl status nginx
+
+# 6. Remove package
+sudo yum remove -y nginx
+```
+
+---
+
+# 🔐 9️⃣ Best Practices in Production
+
+✅ Always test updates in staging first
+✅ Avoid unnecessary repositories
+✅ Keep system updated regularly
+✅ Monitor CVEs for installed packages
+✅ Use version locking when required
+✅ Avoid manual compilation unless necessary
+
+---
+
+# 📊 10️⃣ YUM vs RPM
+
+| Feature               | YUM         | RPM        |
+| --------------------- | ----------- | ---------- |
+| Dependency resolution | ✅ Automatic | ❌ Manual   |
+| High-level management | ✅ Yes       | ❌ No       |
+| Install local package | ✅ Yes       | ✅ Yes      |
+| Query & verification  | ❌ Limited   | ✅ Advanced |
+
+**Rule of thumb:**
+Use `yum/dnf` for installation and updates.
+Use `rpm` for inspection and verification.
+
+---
+
+# 📌 Key Takeaways
+
+* Package management controls your software lifecycle
+* `yum` handles dependencies automatically
+* `rpm` provides detailed package inspection
+* Repository management is critical for security
+* Regular updates protect against vulnerabilities
+
+---
+
+# 🚀 What's Next?
+
+**Day 17 – Service Management with systemctl**
+
+* Start/Stop/Restart services
+* Enable services at boot
+* View logs with journalctl
+* Understand systemd architecture
