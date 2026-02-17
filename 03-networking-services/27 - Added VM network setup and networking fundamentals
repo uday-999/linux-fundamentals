@@ -1,0 +1,138 @@
+# 🚀 Day 26 – Linux Networking: VM Setup & Network Fundamentals
+
+## 📌 Overview
+Today I started the Networking module in my Linux journey.  
+This section covers how Linux systems connect to networks and communicate.
+
+---
+
+# 🌐 1️⃣ Enable Internet in VirtualBox VM
+
+## Steps:
+
+1. Open VirtualBox
+2. Select your Linux VM
+3. Click **Settings**
+4. Go to **Network**
+5. Choose **Bridged Adapter**
+6. Click OK
+7. Start the VM
+
+---
+
+## ✅ Verify Internet Connectivity
+
+```bash
+ping www.google.com
+````
+
+If packets are received, internet is working correctly.
+
+---
+
+# 🌍 2️⃣ Network Fundamentals
+
+## 🔹 IP Address
+
+An IP address uniquely identifies a device on a network.
+
+* IPv4 → `192.168.1.10`
+* IPv6 → `2001:db8::1`
+
+---
+
+## 🔹 Subnet Mask
+
+Divides IP into:
+
+* Network portion
+* Host portion
+
+Example:
+
+```
+IP Address: 192.168.1.10
+Subnet Mask: 255.255.255.0
+```
+
+---
+
+## 🔹 Default Gateway
+
+The router IP that connects your local network to the internet.
+
+Example:
+
+```
+192.168.1.1
+```
+
+---
+
+## 🔹 Static vs DHCP
+
+| Type   | Description               |
+| ------ | ------------------------- |
+| Static | Manually assigned IP      |
+| DHCP   | Automatically assigned IP |
+
+---
+
+# 🛠 3️⃣ Basic Network Commands
+
+## Show IP addresses
+
+```bash
+ip a
+```
+
+## Show routing table
+
+```bash
+ip route
+```
+
+## Test connectivity
+
+```bash
+ping google.com
+```
+
+---
+
+# 📚 What I Learned Today
+
+* How to enable internet in a Linux VM
+* Core networking concepts (IP, Subnet, Gateway)
+* Difference between Static and DHCP
+* Basic network troubleshooting commands
+
+---
+
+# 🔥 Next Step (Day 27)
+
+* Network Configuration Files
+* Deep dive into `ip` command
+
+```
+
+---
+
+# 📌 Commit Message Suggestion
+
+```
+
+Day 26 - Added VM network setup and networking fundamentals
+
+```
+
+---
+
+If you want, I can now:
+
+✅ Create a professional main README update  
+✅ Give Day 27 content  
+✅ Make this more DevOps portfolio-level  
+
+Your streak continues strong 💪🔥
+```
