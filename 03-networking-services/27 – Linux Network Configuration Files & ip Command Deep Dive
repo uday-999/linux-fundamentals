@@ -1,0 +1,178 @@
+Perfect 🔥
+Continuing your streak…
+
+🚀 Day 27 – Linux Network Configuration Files & ip Command Deep Dive
+
+Today we move one level deeper into networking.
+
+
+---
+
+📌 Topics Covered (Day 27)
+
+🗂 1️⃣ Important Network Configuration Files
+
+Understanding where Linux stores networking settings is critical for system administration.
+
+🔹 /etc/hosts
+
+Maps hostname → IP address
+
+Used before DNS lookup
+
+
+Example:
+
+127.0.0.1   localhost
+192.168.1.10  myserver
+
+
+---
+
+🔹 /etc/resolv.conf
+
+Stores DNS server information
+
+
+Example:
+
+nameserver 8.8.8.8
+
+
+---
+
+🔹 /etc/nsswitch.conf
+
+Controls lookup order (files, DNS, etc.)
+
+Defines how name resolution works
+
+
+
+---
+
+🔹 RHEL-Based Systems
+
+/etc/sysconfig/network
+
+Contains global networking settings
+
+
+
+---
+
+🌐 2️⃣ Deep Dive into ip Command (Modern Replacement for ifconfig)
+
+The ip command is part of the iproute2 package.
+
+
+---
+
+🔹 Show All Interfaces
+
+ip a
+
+
+---
+
+🔹 Show Interface Status
+
+ip link show
+
+
+---
+
+🔹 Show Routing Table
+
+ip route
+
+
+---
+
+🔹 Assign Temporary IP
+
+sudo ip addr add 192.168.1.20/24 dev eth0
+
+
+---
+
+🔹 Bring Interface Up / Down
+
+sudo ip link set eth0 up
+sudo ip link set eth0 down
+
+
+---
+
+🧠 What I Learned Today
+
+How hostname resolution works
+
+Where DNS configuration is stored
+
+How Linux decides lookup order
+
+Practical usage of ip command
+
+How to manually assign an IP address
+
+
+
+---
+
+📂 GitHub File Name
+
+02-network-configuration-files.md
+
+
+---
+
+💼 LinkedIn Post – Day 27
+
+Here’s your ready-to-post caption 👇
+
+
+---
+
+🚀 Day 27 – Understanding Linux Network Configuration
+
+Today I explored how Linux manages networking behind the scenes.
+
+📌 Covered: ✔ /etc/hosts – Local hostname mapping
+✔ /etc/resolv.conf – DNS configuration
+✔ /etc/nsswitch.conf – Name resolution order
+✔ Deep dive into the modern ip command
+
+Also practiced:
+
+Viewing interfaces
+
+Checking routes
+
+Assigning temporary IPs
+
+Bringing interfaces up/down
+
+
+Networking is starting to feel powerful now 🔥
+
+🔗 GitHub updated:
+https://github.com/uday-999/linux-fundamentals
+
+#Linux #DevOps #Networking #SystemAdmin #100DaysOfCode
+
+
+---
+
+Ready for Day 28?
+
+Next options:
+
+🔎 Network troubleshooting tools (ss, netstat, tcpdump)
+
+🔐 SSH Basics
+
+📡 DNS tools (nslookup & dig)
+
+
+Tell me which flow you want 🚀
