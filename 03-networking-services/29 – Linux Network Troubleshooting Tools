@@ -1,0 +1,100 @@
+# 🚀 Day 29 – Linux Network Troubleshooting Tools
+
+## 📌 Overview
+Today I explored practical Linux network troubleshooting tools used in real-world server environments.
+
+---
+
+# 🔍 1️⃣ ss Command (Modern Replacement for netstat)
+
+`ss` displays socket statistics and active network connections.
+
+## Show all listening ports
+```bash
+ss -tuln
+````
+
+## Show TCP connections
+
+```bash
+ss -t
+```
+
+## Show UDP connections
+
+```bash
+ss -u
+```
+
+---
+
+# 📊 2️⃣ netstat (Legacy Tool)
+
+Older but still widely used in many systems.
+
+## Show listening ports
+
+```bash
+netstat -tuln
+```
+
+---
+
+# 📡 3️⃣ tcpdump – Packet Capture Tool
+
+Used for monitoring and analyzing network traffic.
+
+## Capture traffic on interface
+
+```bash
+sudo tcpdump -i eth0
+```
+
+## Capture traffic on specific port
+
+```bash
+sudo tcpdump port 22
+```
+
+---
+
+# 🌐 4️⃣ traceroute
+
+Shows the path packets take to reach a destination.
+
+```bash
+traceroute google.com
+```
+
+---
+
+# 🔎 5️⃣ lsof -i
+
+Displays which process is using a specific port.
+
+```bash
+lsof -i :22
+```
+
+---
+
+# 🧠 What I Learned
+
+* How to check open ports
+* How to monitor active network connections
+* How to capture packets
+* How to trace network routes
+* How to identify which process is using a port
+
+---
+
+# 🔥 Why This Matters
+
+These tools are essential for:
+
+* Debugging server issues
+* Checking service availability
+* Investigating suspicious network activity
+* Performing system administration tasks
+
+---
