@@ -1,0 +1,110 @@
+
+# 🚀 Day 30 – SSH Basics & Remote Access
+## 📌 Overview
+Today I explored SSH (Secure Shell), which allows secure remote access to Linux servers over a network.
+
+SSH is one of the most essential tools for System Administrators and DevOps Engineers.
+
+---
+
+# 🔐 1️⃣ What is SSH?
+
+SSH (Secure Shell) is a secure protocol used to connect to remote systems.
+
+Default Port: 22
+
+It encrypts communication between client and server.
+
+---
+
+# 📦 2️⃣ Install SSH Server
+
+### RHEL / CentOS / Amazon Linux
+```bash
+sudo yum install openssh-server
+
+Ubuntu / Debian
+
+sudo apt install openssh-server
+
+
+---
+
+▶ 3️⃣ Start & Enable SSH Service
+
+Start SSH service:
+
+sudo systemctl start sshd
+
+Enable at boot:
+
+sudo systemctl enable sshd
+
+Check status:
+
+sudo systemctl status sshd
+
+
+---
+
+🌐 4️⃣ Connect to a Remote Server
+
+ssh username@server_ip
+
+Example:
+
+ssh uday@192.168.1.20
+
+
+---
+
+📡 5️⃣ Verify SSH Port is Listening
+
+ss -tuln | grep 22
+
+
+---
+
+🔎 6️⃣ Basic Troubleshooting
+
+If connection fails:
+
+Check if sshd service is running
+
+Check firewall rules
+
+Confirm port 22 is open
+
+Verify correct IP address
+
+Check SELinux status (if enabled)
+
+
+
+---
+
+🧠 What I Learned
+
+What SSH is and how it works
+
+How to install and manage sshd
+
+How to connect remotely using SSH
+
+How to verify port 22
+
+Basic troubleshooting steps
+
+
+
+---
+
+🔥 Why SSH is Important
+
+Remote server management
+
+Cloud infrastructure access
+
+Secure communication
+
+Automation in DevOps
