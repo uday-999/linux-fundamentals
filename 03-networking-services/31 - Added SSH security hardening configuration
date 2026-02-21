@@ -1,0 +1,115 @@
+# 🚀 Day 31 – SSH Security Hardening
+
+## 📌 Overview
+Today I focused on securing SSH by modifying configuration settings.
+
+Hardening SSH is essential to protect servers from unauthorized access and brute-force attacks.
+
+---
+
+# 🔐 1️⃣ SSH Configuration File
+
+Main configuration file:
+
+/etc/ssh/sshd_config
+
+Edit the file:
+```bash
+sudo vi /etc/ssh/sshd_config
+
+After making changes, restart SSH:
+
+sudo systemctl restart sshd
+
+
+---
+
+🚫 2️⃣ Disable Root Login
+
+Find: PermitRootLogin yes
+
+Change to: PermitRootLogin no
+
+This prevents direct root login via SSH.
+
+
+---
+
+🔑 3️⃣ Disable Empty Password Login
+
+Find: PermitEmptyPasswords yes
+
+Change to: PermitEmptyPasswords no
+
+Improves security by preventing blank-password logins.
+
+
+---
+
+👥 4️⃣ Allow Specific Users Only
+
+Add the following line: AllowUsers username
+
+Example: AllowUsers uday
+
+Only listed users will be allowed to access SSH.
+
+
+---
+
+🔄 5️⃣ Change Default SSH Port
+
+Default SSH port: 22
+
+Change to custom port (example 2222): Port 2222
+
+After changing:
+
+Update firewall rules
+
+Restart sshd service
+
+
+Verify new port:
+
+ss -tuln | grep 2222
+
+
+---
+
+⏱ 6️⃣ Set Idle Timeout
+
+Add: ClientAliveInterval 300 ClientAliveCountMax 0
+
+This disconnects idle sessions after 5 minutes.
+
+
+---
+
+🧠 What I Learned
+
+How to modify sshd configuration
+
+How to disable root login
+
+How to restrict SSH access
+
+How to change SSH port
+
+How to apply and verify security settings
+
+
+
+---
+
+🔥 Why SSH Hardening is Important
+
+SSH is commonly targeted by attackers.
+
+Proper configuration helps reduce:
+
+Brute-force attacks
+
+Unauthorized access
+
+Security vulnerabilities
