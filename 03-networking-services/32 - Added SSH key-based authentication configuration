@@ -1,0 +1,110 @@
+# 🚀 Day 32 – SSH Key-Based Authentication (Passwordless Login)
+
+## 📌 Overview
+Today I configured SSH key-based authentication to enable secure and passwordless login to a remote Linux server.
+
+SSH keys provide stronger security compared to password-based authentication and are widely used in production environments.
+
+---
+
+# 🔑 1️⃣ Generate SSH Key Pair
+
+On the client machine, generate a key pair:
+
+```bash
+ssh-keygen
+
+It creates:
+
+Private Key → ~/.ssh/id_rsa
+
+Public Key → ~/.ssh/id_rsa.pub
+
+
+Press Enter to accept the default file location.
+
+
+---
+
+📤 2️⃣ Copy Public Key to Remote Server
+
+Use the following command:
+
+ssh-copy-id username@server_ip
+
+Example:
+
+ssh-copy-id uday@192.168.1.20
+
+This copies your public key to:
+
+~/.ssh/authorized_keys on the remote server.
+
+
+---
+
+🔐 3️⃣ Login Without Password
+
+After copying the key:
+
+ssh username@server_ip
+
+If configured correctly, it will not ask for a password.
+
+
+---
+
+🚫 4️⃣ Disable Password Authentication (Recommended)
+
+Edit SSH configuration:
+
+sudo vi /etc/ssh/sshd_config
+
+Find and modify:
+
+PasswordAuthentication no
+
+Restart SSH service:
+
+sudo systemctl restart sshd
+
+
+---
+
+📁 5️⃣ Important SSH Key Files
+
+File	Purpose
+
+~/.ssh/id_rsa	Private key (Keep this secure)
+~/.ssh/id_rsa.pub	Public key
+~/.ssh/authorized_keys	Stores allowed public keys
+
+
+
+---
+
+🧠 What I Learned
+
+How SSH public/private key authentication works
+
+How to generate SSH keys
+
+How to securely copy public key to remote server
+
+How to disable password authentication
+
+Why key-based authentication is more secure
+
+
+
+---
+
+🔥 Why SSH Keys Are Important
+
+Stronger security than passwords
+
+Protects against brute-force attacks
+
+Used in cloud environments
+
+Required for automation tools like Ansible
