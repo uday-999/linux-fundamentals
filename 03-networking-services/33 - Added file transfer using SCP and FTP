@@ -1,0 +1,108 @@
+# 🚀 Day 33 – File Transfer Using SCP & FTP
+
+## 📌 Overview
+Today I explored how to transfer files between Linux systems using SCP and FTP.
+
+File transfer is important for:
+- Uploading configuration files
+- Deploying applications
+- Taking backups
+- Moving logs between servers
+
+---
+
+# 🔐 1️⃣ SCP (Secure Copy)
+
+SCP uses SSH protocol for secure file transfer.
+
+## Copy file from local to remote
+
+```bash
+scp filename username@server_ip:/destination/path
+
+Example:
+
+scp test.txt uday@192.168.1.20:/home/uday/
+
+
+---
+
+Copy file from remote to local
+
+scp username@server_ip:/path/to/file .
+
+Example:
+
+scp uday@192.168.1.20:/home/uday/test.txt .
+
+
+---
+
+Copy entire directory
+
+scp -r foldername username@server_ip:/destination/path
+
+
+---
+
+📦 2️⃣ FTP (File Transfer Protocol)
+
+FTP allows file transfer but is NOT encrypted by default.
+
+
+---
+
+Install FTP Server (RHEL / CentOS)
+
+sudo yum install vsftpd
+
+Start and enable service:
+
+sudo systemctl start vsftpd
+sudo systemctl enable vsftpd
+
+
+---
+
+Connect to FTP Server
+
+ftp server_ip
+
+
+---
+
+🔎 Basic FTP Commands
+
+Command	Description
+
+ls	List files
+get filename	Download file
+put filename	Upload file
+cd directory	Change directory
+bye	Exit FTP
+
+
+
+---
+
+⚠ Security Note
+
+FTP traffic is not encrypted.
+
+SCP is secure because it uses SSH.
+
+In production, prefer SCP or SFTP over FTP.
+
+
+
+---
+
+🧠 What I Learned
+
+How to securely transfer files using SCP
+
+How to copy directories between servers
+
+How to configure and use FTP
+
+Difference between secure and insecure file transfer methods
